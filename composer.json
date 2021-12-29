@@ -1,0 +1,16 @@
+{
+  "name": "acronyme/pdo-playground",
+  "autoload": {
+    "psr-4": {
+      "Db\\": "database/",
+      "App\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Julien TESSIEAU",
+      "email": "julien.tessieau@gmail.com"
+    }
+  ],
+  "require": {}
+}
