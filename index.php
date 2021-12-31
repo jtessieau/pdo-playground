@@ -9,7 +9,7 @@ $pdo = Database::getDatabase();
 
 // $sql = "CREATE TABLE users (
 //             id INTEGER PRIMARY KEY,
-//             name TEXT
+//             name TEXT NOT NULL
 //     )";
 
 // $statement = $pdo->prepare($sql);
@@ -17,6 +17,10 @@ $pdo = Database::getDatabase();
 
 // $statement = $pdo->prepare('INSERT INTO users (name) VALUES (?)');
 // $statement->execute(['manon']);
+
+$userModel = new Users();
+
+$userModel->persist('jean-christophe');
 
 $statement = $pdo->prepare('SELECT * FROM users');
 $statement->execute();

@@ -1,11 +1,23 @@
 <?php
 
-namespace App\models;
+namespace App\Models;
 
-class users
+use Db\Database;
+
+class Users
 {
+    private $pdo;
     private int $id;
-    private string $name;
+    private ?string $name;
+
+    public function __set($name, $value)
+    {
+    }
+
+    public function __construct()
+    {
+        $this->pdo = Database::getDatabase();
+    }
 
     public function getId(): int
     {
@@ -14,7 +26,7 @@ class users
 
     public function getName(): string
     {
-        return $this->name;
+        return ucwords($this->name, " -");
     }
 
     public function setId(int $id): self
@@ -27,5 +39,13 @@ class users
     {
         $this->name = $name;
         return $this;
+    }
+
+    public function persist($name)
+    {
+        $this->setName($name);
+
+        $stmt = $this->pdo->prepare('INSERT INTO users (name) VALUES (?)');
+        $stmt->execute([$this->getName()]);
     }
 }
